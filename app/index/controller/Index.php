@@ -44,7 +44,7 @@ class Index
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->ToUserName;
+                $fromUser = $postObj->toUserName;
                 $time     = time();
                 $msgType  = 'text';
                 $content  = '关注测试';
