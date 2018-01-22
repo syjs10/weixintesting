@@ -29,7 +29,7 @@ class Index
     public function responseMsg()
     {
         // 获取Xml格式消息
-        $postArr = $GLOBALS['PHP_RAW_POST_DATA'];
+        $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
         //Xml转化成对象
         $postObj = simplexml_load_string($postArr);
 
