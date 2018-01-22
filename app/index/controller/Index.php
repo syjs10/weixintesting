@@ -42,7 +42,7 @@ class Index
         //     <MsgId>1234567890123456</MsgId>
         // </xml>
         if (strtolower($postObj->MsgType) == 'event') {
-            if ($postObj->Event == 'subscribe') {
+            if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $time     = time();
@@ -51,7 +51,7 @@ class Index
                 $template = "<xml>
                                 <ToUserName>< ![CDATA[%s] ]></ToUserName>
                                 <FromUserName>< ![CDATA[%s] ]></FromUserName>
-                                <CreateTime>%s</CreateTime>
+                                <CreateTime>%d</CreateTime>
                                 <MsgType>< ![CDATA[%s] ]></MsgType>
                                 <Content>< ![CDATA[%s] ]></Content>
                             </xml>";
