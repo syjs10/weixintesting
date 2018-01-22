@@ -47,7 +47,7 @@ class Index
                 $fromUser = $postObj->ToUserName;
                 $time     = time();
                 $msgType  = 'text';
-                $content  = '关注测试,登录用户';
+                $content  = "关注测试,登录用户{$postObj->FromUserName}";
                 $template = "<xml>
                                 <ToUserName><![CDATA[%s]]></ToUserName>
                                 <FromUserName><![CDATA[%s]]></FromUserName>
