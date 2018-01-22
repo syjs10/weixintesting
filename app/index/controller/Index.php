@@ -44,16 +44,16 @@ class Index
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->ToUserName;
+                $fromUser = $postObj->toUserName;
                 $time     = time();
                 $msgType  = 'text';
                 $content  = '关注测试';
                 $template = "<xml>
-                                <ToUserName>< ![CDATA[%s] ]></ToUserName>
-                                <FromUserName>< ![CDATA[%s] ]></FromUserName>
+                                <ToUserName><![CDATA[%s]]></ToUserName>
+                                <FromUserName><![CDATA[%s]]></FromUserName>
                                 <CreateTime>%s</CreateTime>
-                                <MsgType>< ![CDATA[%s] ]></MsgType>
-                                <Content>< ![CDATA[%s] ]></Content>
+                                <MsgType><![CDATA[%s]]></MsgType>
+                                <Content><![CDATA[%s]]></Content>
                             </xml>";
                 $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
                 echo $info;
