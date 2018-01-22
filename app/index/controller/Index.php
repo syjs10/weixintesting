@@ -1,4 +1,6 @@
 <?php
+namespace app\index\controller;
+
 /**
  *
  */
@@ -19,5 +21,6 @@ class Index
             echo $_GET['echostr'];
             exit();
         }
+        // echo 'test';
     }
 }
