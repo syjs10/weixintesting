@@ -29,7 +29,7 @@ class Index
     public function responseMsg()
     {
         // 获取Xml格式消息
-        $postArr = $_GLOBALS['PHP_RAW_POST_DATA'];
+        $postArr = $GLOBALS['PHP_RAW_POST_DATA'];
         //Xml转化成对象
         $postObj = simplexml_load_string($postArr);
 
@@ -44,7 +44,7 @@ class Index
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->toUserName;
+                $fromUser = $postObj->ToUserName;
                 $time     = time();
                 $msgType  = 'text';
                 $content  = '关注测试';
