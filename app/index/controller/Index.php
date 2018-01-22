@@ -12,7 +12,7 @@ class Index
         $timestamp = $_GET['timestamp'];
         $nonce     = $_GET['nonce'];
         $tokenn    = "syjs10test";
-        $echostr   = $_GET['echostr'];
+        $echostr   = isset($_GET['echostr']) ? $_GET['echostr'] : 0;
         $signature = $_GET['signature'];
         $array     = array($timestamp, $nonce, $tokenn);
         sort($array);
@@ -44,7 +44,7 @@ class Index
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->toUserName;
+                $fromUser = $postObj->ToUserName;
                 $time     = time();
                 $msgType  = 'text';
                 $content  = '关注测试';
