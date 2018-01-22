@@ -41,6 +41,8 @@ class Index
         //     <Content>< ![CDATA[this is a test] ]></Content>
         //     <MsgId>1234567890123456</MsgId>
         // </xml>
+
+        //关注时返回消息
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
                 $toUser   = $postObj->FromUserName;
@@ -58,6 +60,25 @@ class Index
                 $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
                 echo $info;
 
+            }
+        }
+        //文字返回消息
+        if (strtolower($postObj->MsgType) == 'text') {
+            if (strtolower($postObj->Content) == 'test') {
+                $toUser   = $postObj->FromUserName;
+                $fromUser = $postObj->ToUserName;
+                $time     = time();
+                $msgType  = 'text';
+                $content  = "测试成功";
+                $template = "<xml>
+                                <ToUserName><![CDATA[%s]]></ToUserName>
+                                <FromUserName><![CDATA[%s]]></FromUserName>
+                                <CreateTime>%s</CreateTime>
+                                <MsgType><![CDATA[%s]]></MsgType>
+                                <Content><![CDATA[%s]]></Content>
+                            </xml>";
+                $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
+                echo $info;
             }
         }
     }
