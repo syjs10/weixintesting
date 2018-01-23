@@ -80,9 +80,9 @@ class Index
                 $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
                 echo $info;
             }
-        }
-        //返回图文消息
-        if (strtolower($postObj->MsgType) == 'text') {
+
+            //返回图文消息
+
             if (trim($postObj->Content) == '1') {
                 $arr = array(
                     array(
@@ -117,6 +117,7 @@ class Index
                 $info = sprintf($template, $toUser, $fromUser, $time, $msgType);
                 echo $info;
             }
+
         }
     }
 }
