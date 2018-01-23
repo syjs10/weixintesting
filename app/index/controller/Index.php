@@ -85,21 +85,24 @@ class Index
         if (strtolower($postObj->MsgType) == 'text') {
             if (trim($postObj->Content) == '1') {
                 $arr = array(
-                    'title'       => 'testing',
-                    'description' => 'test contetnt',
-                    'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
-                    'url'         => 'https://www.baidu.com',
+                    array(
+                        'title'       => 'testing',
+                        'description' => 'test contetnt',
+                        'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
+                        'url'         => 'https://www.baidu.com',
+                    ),
                 );
                 $toUser   = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $time     = time();
                 $msgType  = 'news';
+                $count    = count($arr);
                 $template = "<xml>
                                 <ToUserName><![CDATA[%s]]></ToUserName>
                                 <FromUserName><![CDATA[%s]]></FromUserName>
                                 <CreateTime>%s</CreateTime>
                                 <MsgType><![CDATA[%s]]></MsgType>
-                                <ArticleCount>1</ArticleCount>
+                                <ArticleCount>{$count}</ArticleCount>
                                 <Articles>";
                 foreach ($arr as $key => $value) {
                     $template .= "<item>
