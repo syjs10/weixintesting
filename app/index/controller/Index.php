@@ -86,10 +86,16 @@ class Index
             if (trim($postObj->Content) == '1') {
                 $arr = array(
                     array(
-                        'title'       => 'testing',
-                        'description' => 'test contetnt',
+                        'title'       => '百度',
+                        'description' => '这是百度页面',
                         'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
                         'url'         => 'https://www.baidu.com',
+                    ),
+                    array(
+                        'title'       => '腾讯',
+                        'description' => '这是腾讯页面',
+                        'picUrl'      => 'http://mat1.gtimg.com/www/images/qq2012/qqlogofilter1_5.png',
+                        'url'         => 'https://www.qq.com',
                     ),
                 );
                 $toUser   = $postObj->FromUserName;
