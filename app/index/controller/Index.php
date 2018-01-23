@@ -62,9 +62,9 @@ class Index
 
             }
         }
-        //文字返回消息
+        //返回文字消息
         if (strtolower($postObj->MsgType) == 'text') {
-            if (strtolower($postObj->Content) == 'test') {
+            if (trim($postObj->Content) == 'test') {
                 $toUser   = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $time     = time();
@@ -78,6 +78,40 @@ class Index
                                 <Content><![CDATA[%s]]></Content>
                             </xml>";
                 $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
+                echo $info;
+            }
+        }
+        //返回图文消息
+        if (strtolower($postObj->MsgType) == 'text') {
+            if (trim($postObj->Content) == '1') {
+                $arr = array(
+                    'title'       => 'testing',
+                    'description' => 'test contetnt',
+                    'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
+                    'url'         => 'https://www.baidu.com',
+                );
+                $toUser   = $postObj->FromUserName;
+                $fromUser = $postObj->ToUserName;
+                $time     = time();
+                $msgType  = 'news';
+                $template = "<xml>
+                                <ToUserName><![CDATA[%s]]></ToUserName>
+                                <FromUserName><![CDATA[%s]]></FromUserName>
+                                <CreateTime>%s</CreateTime>
+                                <MsgType><![CDATA[%s]]></MsgType>
+                                <ArticleCount>1</ArticleCount>
+                                <Articles>";
+                foreach ($arr as $key => $value) {
+                    $template .= "<item>
+                                    <Title><![CDATA[{$value['title']}]]></Title>
+                                    <Description><![CDATA[{$value['description']}]]></Description>
+                                    <PicUrl><![CDATA[{$value['picUrl']}]]></PicUrl>
+                                    <Url><![CDATA[{$value['url']}]]></Url>
+                                  </item>";
+                }
+                $template .= "</Articles>
+                              </xml>";
+                $info = sprintf($template, $toUser, $fromUser, $time, $msgType);
                 echo $info;
             }
         }
