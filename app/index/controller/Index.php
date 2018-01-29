@@ -6,7 +6,6 @@ namespace app\index\controller;
  */
 class Index
 {
-
     public function index()
     {
         $timestamp = $_GET['timestamp'];
@@ -25,6 +24,11 @@ class Index
         } else {
             $this->responseMsg();
         }
+    }
+    public function getSource()
+    {
+        $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X 2 " . RUNTIME_PATH);
+        return implode("|", json_decode($output, true));
     }
     public function responseMsg()
     {
