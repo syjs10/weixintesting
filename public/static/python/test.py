@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 
 import requests
-# import pytesseract
+import pytesseract
 # from PIL import Image
 # from bs4 import BeautifulSoup
 import json
