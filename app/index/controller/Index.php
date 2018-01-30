@@ -1,11 +1,17 @@
 <?php
 namespace app\index\controller;
 
+use app\index\model\Message;
+
 /**
  *
  */
 class Index
 {
+    public function __construct()
+    {
+        $this->msg = new Message();
+    }
     public function index()
     {
         $timestamp = $_GET['timestamp'];
@@ -30,12 +36,13 @@ class Index
         $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X 2 " . RUNTIME_PATH);
         return implode("|", json_decode($output, true));
     }
+    public function test()
+    {
+        return $this->msg->test();
+    }
     public function responseMsg()
     {
-        // 获取Xml格式消息
-        $postArr = file_get_contents('php://input');
-        //Xml转化成对象
-        $postObj = simplexml_load_string($postArr);
+        $postObj = $this->msg->getPostMessage();
 
         // <xml>
         //     <ToUserName>< ![CDATA[toUser] ]></ToUserName>
@@ -49,21 +56,7 @@ class Index
         //关注时返回消息
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
-                $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->ToUserName;
-                $time     = time();
-                $msgType  = 'text';
-                $content  = "关注测试,登录用户{$postObj->FromUserName}";
-                $template = "<xml>
-                                <ToUserName><![CDATA[%s]]></ToUserName>
-                                <FromUserName><![CDATA[%s]]></FromUserName>
-                                <CreateTime>%s</CreateTime>
-                                <MsgType><![CDATA[%s]]></MsgType>
-                                <Content><![CDATA[%s]]></Content>
-                            </xml>";
-                $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
-                echo $info;
-
+                $tihs->msg->returnTextMessage('hello');
             }
         }
         //返回文字消息
