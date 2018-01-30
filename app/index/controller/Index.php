@@ -31,9 +31,9 @@ class Index
             $this->responseMsg();
         }
     }
-    public function getSource()
+    public function getSource($term = '1')
     {
-        $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X 2 " . RUNTIME_PATH);
+        $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X {$term} " . RUNTIME_PATH);
         return implode("|", json_decode($output, true));
     }
     public function test()
@@ -59,67 +59,66 @@ class Index
                 echo $this->msg->returnTextMessage('hello');
             }
         }
-        //返回文字消息
+        //返回消息
         if (strtolower($postObj->MsgType) == 'text') {
-            if (trim($postObj->Content) == 'test') {
-                $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->ToUserName;
-                $time     = time();
-                $msgType  = 'text';
-                $content  = "测试成功";
-                $template = "<xml>
-                                <ToUserName><![CDATA[%s]]></ToUserName>
-                                <FromUserName><![CDATA[%s]]></FromUserName>
-                                <CreateTime>%s</CreateTime>
-                                <MsgType><![CDATA[%s]]></MsgType>
-                                <Content><![CDATA[%s]]></Content>
-                            </xml>";
-                $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
-                echo $info;
+            $str    = trim($postObj->Content);
+            $strArr = preg_split('/:/', $str);
+            switch ($strArr[0]) {
+                case '成绩':
+                    $this->getSource($str[1]);
+                    break;
+                default:
+                    echo $this->msg->returnTextMessage('test');
+                    break;
             }
 
-            //返回图文消息
+            // //返回文字消息
+            // if (trim($postObj->Content) == 'test') {
+            //     echo $this->msg->returnTextMessage('hello');
+            // }
 
-            if (trim($postObj->Content) == '1') {
-                $arr = array(
-                    array(
-                        'title'       => '百度',
-                        'description' => '这是百度页面',
-                        'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
-                        'url'         => 'https://www.baidu.com',
-                    ),
-                    array(
-                        'title'       => '腾讯',
-                        'description' => '这是腾讯页面',
-                        'picUrl'      => 'http://mat1.gtimg.com/www/images/qq2012/qqlogofilter1_5.png',
-                        'url'         => 'https://www.qq.com',
-                    ),
-                );
-                $toUser   = $postObj->FromUserName;
-                $fromUser = $postObj->ToUserName;
-                $time     = time();
-                $msgType  = 'news';
-                $count    = count($arr);
-                $template = "<xml>
-                                <ToUserName><![CDATA[%s]]></ToUserName>
-                                <FromUserName><![CDATA[%s]]></FromUserName>
-                                <CreateTime>%s</CreateTime>
-                                <MsgType><![CDATA[%s]]></MsgType>
-                                <ArticleCount>{$count}</ArticleCount>
-                                <Articles>";
-                foreach ($arr as $key => $value) {
-                    $template .= "<item>
-                                    <Title><![CDATA[{$value['title']}]]></Title>
-                                    <Description><![CDATA[{$value['description']}]]></Description>
-                                    <PicUrl><![CDATA[{$value['picUrl']}]]></PicUrl>
-                                    <Url><![CDATA[{$value['url']}]]></Url>
-                                  </item>";
-                }
-                $template .= "</Articles>
-                              </xml>";
-                $info = sprintf($template, $toUser, $fromUser, $time, $msgType);
-                echo $info;
-            }
+            // //返回图文消息
+
+            // if (trim($postObj->Content) == '1') {
+            //     $arr = array(
+            //         array(
+            //             'title'       => '百度',
+            //             'description' => '这是百度页面',
+            //             'picUrl'      => 'https://www.baidu.com/img/bd_logo1.png',
+            //             'url'         => 'https://www.baidu.com',
+            //         ),
+            //         array(
+            //             'title'       => '腾讯',
+            //             'description' => '这是腾讯页面',
+            //             'picUrl'      => 'http://mat1.gtimg.com/www/images/qq2012/qqlogofilter1_5.png',
+            //             'url'         => 'https://www.qq.com',
+            //         ),
+            //     );
+            //     $toUser   = $postObj->FromUserName;
+            //     $fromUser = $postObj->ToUserName;
+            //     $time     = time();
+            //     $msgType  = 'news';
+            //     $count    = count($arr);
+            //     $template = "<xml>
+            //                     <ToUserName><![CDATA[%s]]></ToUserName>
+            //                     <FromUserName><![CDATA[%s]]></FromUserName>
+            //                     <CreateTime>%s</CreateTime>
+            //                     <MsgType><![CDATA[%s]]></MsgType>
+            //                     <ArticleCount>{$count}</ArticleCount>
+            //                     <Articles>";
+            //     foreach ($arr as $key => $value) {
+            //         $template .= "<item>
+            //                         <Title><![CDATA[{$value['title']}]]></Title>
+            //                         <Description><![CDATA[{$value['description']}]]></Description>
+            //                         <PicUrl><![CDATA[{$value['picUrl']}]]></PicUrl>
+            //                         <Url><![CDATA[{$value['url']}]]></Url>
+            //                       </item>";
+            //     }
+            //     $template .= "</Articles>
+            //                   </xml>";
+            //     $info = sprintf($template, $toUser, $fromUser, $time, $msgType);
+            //     echo $info;
+            // }
 
         }
     }
