@@ -67,12 +67,12 @@ class Index
             switch ($str) {
                 case '1':
                     $massage = $this->getScore();
+                    echo $this->msg->returnTextMessage($massage);
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
                     break;
             }
-            echo $this->msg->returnTextMessage($massage);
 
             // //返回文字消息
             // if (trim($postObj->Content) == 'test') {

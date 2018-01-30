@@ -18,7 +18,7 @@ class Message extends Model
         $this->postObj = simplexml_load_string($postArr);
         return $this->postObj;
     }
-    public function returnTextMessage($content = "关注测试")
+    public function returnTextMessage($content)
     {
         $toUser   = $this->postObj->FromUserName;
         $fromUser = $this->postObj->ToUserName;
