@@ -62,9 +62,9 @@ class Index
         }
         //返回消息
         if (strtolower($postObj->MsgType) == 'text') {
-            $str    = trim($postObj->Content);
-            $strArr = preg_split('/:/', $str);
-            switch ($strArr[0]) {
+            $str = trim($postObj->Content);
+            // $strArr = preg_split('/:/', $str);
+            switch ($str) {
                 case '成绩':
                     echo $this->getSource();
                     break;
