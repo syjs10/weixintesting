@@ -63,10 +63,10 @@ class Index
         //返回消息
         if (strtolower($postObj->MsgType) == 'text') {
             $str    = trim($postObj->Content);
-            $strArr = preg_split('/-/', $str);
+            $strArr = preg_split('/:/', $str);
             switch ($strArr[0]) {
-                case 'chengji':
-                    echo $this->getSource();
+                case '成绩':
+                    echo $this->getSource($strArr[1]);
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
