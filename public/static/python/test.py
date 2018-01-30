@@ -2,8 +2,8 @@
 
 import requests
 # import pytesseract
-from PIL import Image
-from bs4 import BeautifulSoup
+# from PIL import Image
+# from bs4 import BeautifulSoup
 import json
 import sys
 
