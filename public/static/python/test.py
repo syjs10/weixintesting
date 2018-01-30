@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-import io
-import requests
-import pytesseract
-from PIL import Image
-from bs4 import BeautifulSoup
-import json
-import sys
+# import requests
+# import pytesseract
+# from PIL import Image
+# from bs4 import BeautifulSoup
+# import json
+# import sys
 
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
