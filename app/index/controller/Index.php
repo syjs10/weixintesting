@@ -64,15 +64,15 @@ class Index
         if (strtolower($postObj->MsgType) == 'text') {
             $str = trim($postObj->Content);
             // $strArr = preg_split('/:/', $str);
-            switch ($str) {
-                case '1':
-                    $massage = $this->getScore();
-                    echo $this->msg->returnTextMessage($massage);
-                    break;
-                default:
-                    echo $this->msg->returnTextMessage('test');
-                    break;
-            }
+            // switch ($str) {
+            //     case '1':
+            $massage = $this->getScore();
+            echo $this->msg->returnTextMessage($massage);
+            //         break;
+            //     default:
+            //         echo $this->msg->returnTextMessage('test');
+            //         break;
+            // }
 
             // //返回文字消息
             // if (trim($postObj->Content) == 'test') {
