@@ -31,7 +31,7 @@ class Index
             $this->responseMsg();
         }
     }
-    public function getSource($term = '1')
+    public function getScore($term = '1')
     {
         $output = shell_exec(STATIC_PATH . "python/test.py 150402305 21103X {$term} " . RUNTIME_PATH);
         return implode("|", json_decode($output, true));
@@ -65,8 +65,8 @@ class Index
             $str = trim($postObj->Content);
             // $strArr = preg_split('/:/', $str);
             switch ($str) {
-                case '成绩':
-                    echo $this->getSource();
+                case '1':
+                    echo $this->getScore();
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
