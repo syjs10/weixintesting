@@ -1,4 +1,5 @@
 #!/usr/bin python3
+import io
 import requests
 import pytesseract
 from PIL import Image
@@ -18,6 +19,8 @@ f.write(valcode.content)
 # 关闭文件流对象
 f.close()
 image = Image.open(sys.argv[4]+'valcode.png')
+
+
 vcode = pytesseract.image_to_string(image)
 cookie = requests.utils.dict_from_cookiejar(valcode.cookies)
 data = {

@@ -35,7 +35,7 @@ class Index extends Command
     }
     public function index()
     {
-        $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X 2 " . RUNTIME_PATH);
+        $output = passthru("python3 " . STATIC_PATH . "python/test.py 150402305 21103X 2 " . RUNTIME_PATH);
         var_dump($output);
     }
 }
