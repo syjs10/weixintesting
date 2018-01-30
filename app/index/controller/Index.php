@@ -34,8 +34,8 @@ class Index
     public function getSource($term = '1')
     {
         // $output = shell_exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X {$term} " . RUNTIME_PATH);
+        exec("python3 " . STATIC_PATH . "python/test.py 150402305 21103X {$term} " . RUNTIME_PATH, $output);
         // return implode("|", json_decode($output, true));
-        $output = shell_exec('echo "test"');
         var_dump($output);
     }
     public function test()
