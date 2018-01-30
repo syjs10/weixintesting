@@ -56,7 +56,7 @@ class Index
         //关注时返回消息
         if (strtolower($postObj->MsgType) == 'event') {
             if (strtolower($postObj->Event) == 'subscribe') {
-                $tihs->msg->returnTextMessage('hello');
+                echo $this->msg->returnTextMessage('hello');
             }
         }
         //返回文字消息
