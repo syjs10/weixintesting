@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-# import requests
-# import pytesseract
-# from PIL import Image
-# from bs4 import BeautifulSoup
-# import json
+#
+import requests
+import pytesseract
+from PIL import Image
+from bs4 import BeautifulSoup
+import json
 # import sys
 
 # reload(sys)
