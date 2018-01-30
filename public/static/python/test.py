@@ -10,8 +10,8 @@ import sys
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
 
-session = requests.session()
-valcode = requests.get('http://202.199.96.30/ACTIONVALIDATERANDOMPICTURE.APPPROCESS')
+# session = requests.session()
+# valcode = requests.get('http://202.199.96.30/ACTIONVALIDATERANDOMPICTURE.APPPROCESS')
 print("test")
 # f = open(sys.argv[4]+'valcode.png', 'wb')
 # # 将response的二进制内容写入到文件中
