@@ -65,7 +65,7 @@ class Index
             $strArr = preg_split('/-/', $str);
             switch ($strArr[0]) {
                 case 'chengji':
-                    $this->getSource();
+                    echo $this->getSource();
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
