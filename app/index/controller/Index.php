@@ -65,7 +65,7 @@ class Index
             $strArr = preg_split('/:/', $str);
             switch ($strArr[0]) {
                 case '成绩':
-                    $this->getSource($str[1]);
+                    $this->getSource($strArr[1]);
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
