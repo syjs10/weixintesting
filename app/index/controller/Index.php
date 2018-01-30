@@ -64,7 +64,7 @@ class Index
             $str    = trim($postObj->Content);
             $strArr = preg_split('/-/', $str);
             switch ($strArr[0]) {
-                case '成绩':
+                case 'chengji':
                     $this->getSource();
                     break;
                 default:
