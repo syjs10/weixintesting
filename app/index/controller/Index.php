@@ -66,12 +66,13 @@ class Index
             // $strArr = preg_split('/:/', $str);
             switch ($str) {
                 case '1':
-                    echo $this->getScore();
+                    $massage = $this->getScore();
                     break;
                 default:
                     echo $this->msg->returnTextMessage('test');
                     break;
             }
+            echo $this->msg->returnTextMessage($massage);
 
             // //返回文字消息
             // if (trim($postObj->Content) == 'test') {
