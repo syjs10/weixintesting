@@ -10,6 +10,7 @@ import sys
 
 session = requests.session()
 valcode = requests.get('http://202.199.96.30/ACTIONVALIDATERANDOMPICTURE.APPPROCESS')
+print("test")
 f = open(sys.argv[4]+'valcode.png', 'wb')
 # 将response的二进制内容写入到文件中
 f.write(valcode.content)
