@@ -66,7 +66,7 @@ class Index
             // $strArr = preg_split('/:/', $str);
             // switch ($str) {
             //     case '1':
-            $massage = $this->getScore();
+            $massage = $this->getScore($str);
             echo $this->msg->returnTextMessage('$massage');
             //         break;
             //     default:
